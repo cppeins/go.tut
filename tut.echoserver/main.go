@@ -6,9 +6,13 @@ import (
 	"os"
 )
 
+const (
+	LISTEN_URL = "localhost:7000"
+)
+
 func main() {
 	// listen for incoming connections.
-	l, err := net.Listen("tcp", "localhost:7000")
+	l, err := net.Listen("tcp", LISTEN_URL)
 	if err != nil {
 		fmt.Println("failed to listen with error:", err.Error())
 		os.Exit(1)
@@ -16,7 +20,7 @@ func main() {
 	// close the listener when the application closes.
 	defer l.Close()
 
-	fmt.Println("listening on " + CONN_HOST + ":" + CONN_PORT)
+	fmt.Println("listening on " + LISTEN_URL)
 	for {
 		// listen for an incoming connection.
 		conn, err := l.Accept()
